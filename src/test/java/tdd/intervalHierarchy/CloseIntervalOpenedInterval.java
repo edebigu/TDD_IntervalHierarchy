@@ -17,10 +17,19 @@ public class CloseIntervalOpenedInterval {
 	
 	@Test
 	public void testIsIntersectedOverlapingByLeftWithEqualsMin() {
-		Interval one = new IntervalBuilder().min(3).max(14).kind(true).build();
+		Interval one = new IntervalBuilder().min(3).max(14).kind(false).build();
 		Interval another = new IntervalBuilder().min(3).max(7).kind(true).build();
 		assertTrue(one.isIntersected(another));
 	}
+	
+	@Test
+	public void testIsIntersectedOverlapingBoth() {
+		Interval one = new IntervalBuilder().min(3).max(14).kind(false).build();
+		Interval another = new IntervalBuilder().min(0).max(17).kind(true).build();
+		assertTrue(one.isIntersected(another));
+	}
+	
+	
 
 
 }
