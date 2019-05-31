@@ -53,7 +53,7 @@ public class OpenedIntervalTest {
 	public void testIsIntersectedEqualInterval() {
 		Interval one = new OpenedIntervalBuilder().min(3).max(14).build();
 		Interval another = new OpenedIntervalBuilder().min(3).max(14).build();
-		assertFalse(one.isIntersected(another));
+		assertTrue(one.isIntersected(another));
 	}
 
 }
