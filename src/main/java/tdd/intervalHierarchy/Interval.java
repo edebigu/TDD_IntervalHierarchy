@@ -13,10 +13,10 @@ public class Interval {
 	}
 	
 	public boolean isIntersected(Interval another) {
-		boolean isIncluded = this.isIncluded(another.min) ||
-				this.isIncluded(another.max)||
-				another.isIncluded(this.min);
-		if (this.kind) {
+		boolean isIncluded = this.isIncluded(another.min, another.kind) ||
+				this.isIncluded(another.max, another.kind)||
+				another.isIncluded(this.min, another.kind);
+		if (this.kind || another.kind) {
 			return isIncluded || this.isEqual(another);
 		}
 		else {
@@ -29,13 +29,20 @@ public class Interval {
 		return this.min == another.min && this.max == another.max;
 	}
 	
-	private boolean isIncluded (double value) {
-		if (!kind) {
+	private boolean isIncluded (double value, boolean kind) {
+		if (!this.kind && !kind) {
 			return this.min <= value && value <= this.max;
 		}
-		else {
+		else if (this.kind && kind) {
 			return this.min < value && value < this.max;
 		}
+		
+		else if(!this.kind && kind) {
+			return this.min < value && value <=this.max;
+		}
+
+		
+		return false;
 		
 	}
 

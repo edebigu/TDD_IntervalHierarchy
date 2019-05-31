@@ -35,6 +35,13 @@ public class CloseIntervalOpenedInterval {
 		Interval another = new IntervalBuilder().min(5).max(10).kind(true).build();
 		assertTrue(one.isIntersected(another));
 	}
+	
+	@Test
+	public void testIsIntersectedNotOverlapingLeft() {
+		Interval one = new IntervalBuilder().min(3).max(14).kind(false).build();
+		Interval another = new IntervalBuilder().min(0).max(3).kind(true).build();
+		assertFalse(one.isIntersected(another));
+	}
 
 
 }
