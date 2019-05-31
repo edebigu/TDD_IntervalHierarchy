@@ -1,4 +1,6 @@
-package tdd.intervalHierarchy;
+package tdd.intervalHierarchy.Builders;
+
+import tdd.intervalHierarchy.ClosedInterval;
 
 public class ClosedIntervalBuilder {
 
@@ -6,22 +8,22 @@ public class ClosedIntervalBuilder {
 	
 	private double max;
 	
-	ClosedIntervalBuilder(){
+	public ClosedIntervalBuilder(){
 		this.min = 0;
 		this.max = 1;
 	}
 	
-	ClosedIntervalBuilder min(double min) {
+	public ClosedIntervalBuilder min(double min) {
 		this.min = min;
 		return this;
 	}
 
-	ClosedIntervalBuilder max(double max) {
+	public ClosedIntervalBuilder max(double max) {
 		this.max = max;
 		return this;
 	}
 	
-	ClosedInterval build() {
+	public ClosedInterval build() {
 		assert min <= max;
 		return new ClosedInterval(min, max);
 	}
