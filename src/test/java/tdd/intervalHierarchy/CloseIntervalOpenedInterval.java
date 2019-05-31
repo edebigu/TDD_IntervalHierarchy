@@ -29,7 +29,12 @@ public class CloseIntervalOpenedInterval {
 		assertTrue(one.isIntersected(another));
 	}
 	
-	
+	@Test
+	public void testIsIntersectedOverlapingInside() {
+		Interval one = new IntervalBuilder().min(3).max(14).kind(false).build();
+		Interval another = new IntervalBuilder().min(5).max(10).kind(true).build();
+		assertTrue(one.isIntersected(another));
+	}
 
 
 }
