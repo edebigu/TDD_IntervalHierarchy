@@ -2,14 +2,18 @@ package tdd.intervalHierarchy.Builders;
 
 import tdd.intervalHierarchy.Interval;
 
-public abstract class IntervalBuilder {
+public class IntervalBuilder {
 	
-	protected double min;
-	protected double max;
+	private double min;
+	private double max;
+	private boolean kind;
 	
-	protected IntervalBuilder(){
+	
+	
+	public IntervalBuilder(){
 		this.min = 0;
 		this.max = 1;
+		this.kind = true;
 	}
 
 
@@ -23,7 +27,15 @@ public abstract class IntervalBuilder {
 		return this;
 	}
 	
-	public abstract Interval build();
+	public IntervalBuilder kind(boolean kind) {
+		this.kind = kind;
+		return this;
+	}
+	
+	public Interval build(){
+		assert min <= max;
+		return new Interval(min, max,kind);
+	}
 	
 	
 
