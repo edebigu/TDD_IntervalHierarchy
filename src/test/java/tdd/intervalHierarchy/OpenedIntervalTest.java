@@ -36,6 +36,13 @@ public class OpenedIntervalTest {
 		assertTrue(one.isIntersected(another));
 	}
 	
+	@Test
+	public void testIsIntersectedNotOverlapingLeft() {
+		OpenedInterval one = new OpenedIntervalBuilder().min(3).max(14).build();
+		OpenedInterval another = new OpenedIntervalBuilder().min(0).max(3).build();
+		assertFalse(one.isIntersected(another));
+	}
+	
 
 	
 
