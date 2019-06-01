@@ -11,49 +11,15 @@ public class Interval {
 	}
 	
 	public boolean isIntersected(Interval another) {
-
-		
-		if (!this.fromEndPoint.getClosedInterval() && !another.fromEndPoint.getClosedInterval() && !this.untilEndPoint.getClosedInterval() &&
-				!another.untilEndPoint.getClosedInterval()) {
-			
-			return this.isIncluded(another.fromEndPoint) || this.isIncluded(another.untilEndPoint) ||
-			another.isIncluded(this.fromEndPoint) || this.isEqual(another);
-		}
-		else {
-			
-			return this.isIncluded(another.fromEndPoint) || this.isIncluded(another.untilEndPoint) ||
-					another.isIncluded(this.fromEndPoint);
-		}
+		return this.fromEndPoint.isIncluded(another.fromEndPoint) && this.untilEndPoint.isIncluded(another.fromEndPoint) ||
+				this.fromEndPoint.isIncluded(another.untilEndPoint) && this.untilEndPoint.isIncluded(another.untilEndPoint) ||
+				another.fromEndPoint.isIncluded(this.fromEndPoint) && another.untilEndPoint.isIncluded(this.fromEndPoint) || 
+				this.isEqual(another);
 
 	}
 	
 	private boolean isEqual (Interval another) {
 		return this.fromEndPoint.getValue() == another.fromEndPoint.getValue() && this.untilEndPoint.getValue() == another.untilEndPoint.getValue();
-	}
-	
-	private boolean isIncluded (EndPoint another) {
-		
-		
-		if (this.fromEndPoint.getClosedInterval())
-		{
-			if (another.getClosedInterval()) {
-				return this.fromEndPoint.getValue() <= another.getValue() && another.getValue() <= this.untilEndPoint.getValue();
-			}
-			else {
-				return this.fromEndPoint.getValue() < another.getValue() && another.getValue() < this.untilEndPoint.getValue();
-			}
-		}
-		else {
-			if (another.getClosedInterval()) {
-				return this.fromEndPoint.getValue()<  another.getValue() && another.getValue() < this.untilEndPoint.getValue();
-			}
-			else {
-				return this.fromEndPoint.getValue() < another.getValue() && another.getValue() < this.untilEndPoint.getValue();
-			}
-			
-		}
-	
-		
 	}
 
 }

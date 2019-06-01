@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import tdd.intervalHierarchy.Builders.IntervalBuilder;
 
-public class OpenedIntervalClosedInterval {
+public class OpenedIntervalClosedIntervalTest {
 	
 	@Test
 	public void testIsIntersectedOverlapingLeft() {
@@ -49,14 +49,12 @@ public class OpenedIntervalClosedInterval {
 		Interval another = new IntervalBuilder().fromEndPoint(14, false).untilEndPoint(22, false).build();
 		assertFalse(one.isIntersected(another));
 	}
-	
-	//Este caso no se ejecuta porque falla
-	/*@Test
+	@Test
 	public void testIsIntersectedEqualInterval() {
 		Interval one = new IntervalBuilder().fromEndPoint(3, true).untilEndPoint(14, true).build();
 		Interval another = new IntervalBuilder().fromEndPoint(3, false).untilEndPoint(14, false).build();
 		assertTrue(one.isIntersected(another));
-	}*/
+	}
 
 
 }
