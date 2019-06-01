@@ -2,47 +2,57 @@ package tdd.intervalHierarchy;
 
 public class Interval {
 	
-	protected double min;
-	protected double max;
-	protected boolean kind;
+	private FromEndPoint fromEndPoint;
+	private UntilEndPoint untilEndPoint;
 	
-	public Interval(double min, double max, boolean kind) {
-		this.min = min;
-		this.max = max;
-		this.kind = kind;
+	public Interval(FromEndPoint fromEndPoint,UntilEndPoint untilEndPoint) {
+		this.fromEndPoint = fromEndPoint;
+		this.untilEndPoint = untilEndPoint;
 	}
 	
 	public boolean isIntersected(Interval another) {
-		boolean isIncluded = this.isIncluded(another.min, another.kind) ||
-				this.isIncluded(another.max, another.kind)||
-				another.isIncluded(this.min, another.kind);
-		if (this.kind || another.kind) {
-			return isIncluded || this.isEqual(another);
+
+		
+		if (!this.fromEndPoint.getClosedInterval() && !another.fromEndPoint.getClosedInterval() && !this.untilEndPoint.getClosedInterval() &&
+				!another.untilEndPoint.getClosedInterval()) {
+			
+			return this.isIncluded(another.fromEndPoint) || this.isIncluded(another.untilEndPoint) ||
+			another.isIncluded(this.fromEndPoint) || this.isEqual(another);
 		}
 		else {
-			return isIncluded;
+			
+			return this.isIncluded(another.fromEndPoint) || this.isIncluded(another.untilEndPoint) ||
+					another.isIncluded(this.fromEndPoint);
 		}
 
 	}
 	
 	private boolean isEqual (Interval another) {
-		return this.min == another.min && this.max == another.max;
+		return this.fromEndPoint.getValue() == another.fromEndPoint.getValue() && this.untilEndPoint.getValue() == another.untilEndPoint.getValue();
 	}
 	
-	private boolean isIncluded (double value, boolean kind) {
-		if (!this.kind && !kind) {
-			return this.min <= value && value <= this.max;
-		}
-		else if (this.kind && kind) {
-			return this.min < value && value < this.max;
-		}
+	private boolean isIncluded (EndPoint another) {
 		
-		else if(!this.kind && kind) {
-			return this.min < value && value <=this.max;
-		}
-
 		
-		return false;
+		if (this.fromEndPoint.getClosedInterval())
+		{
+			if (another.getClosedInterval()) {
+				return this.fromEndPoint.getValue() <= another.getValue() && another.getValue() <= this.untilEndPoint.getValue();
+			}
+			else {
+				return this.fromEndPoint.getValue() < another.getValue() && another.getValue() < this.untilEndPoint.getValue();
+			}
+		}
+		else {
+			if (another.getClosedInterval()) {
+				return this.fromEndPoint.getValue()<  another.getValue() && another.getValue() < this.untilEndPoint.getValue();
+			}
+			else {
+				return this.fromEndPoint.getValue() < another.getValue() && another.getValue() < this.untilEndPoint.getValue();
+			}
+			
+		}
+	
 		
 	}
 
