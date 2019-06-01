@@ -6,22 +6,15 @@ public class FromEndPoint extends EndPoint{
 		super(value, closePoint);
 	}
 	
-	public boolean isIncluded(FromEndPoint another) {
-		if (this.getClosedPoint()) {
-			return this.getValue() <= another.getValue();
-		}
-		else {
-			return this.getValue() < another.getValue();
-		}
-	}
-	
-	public boolean isIncluded(UntilEndPoint another) {
+	public boolean isOnTheLeft (EndPoint another)
+	{
 		if (this.getClosedPoint() && another.getClosedPoint()) {
 			return this.getValue() <= another.getValue();
 		}
 		else {
 			return this.getValue() < another.getValue();
 		}
+		
 	}
 
 
