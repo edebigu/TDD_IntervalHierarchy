@@ -8,7 +8,7 @@ import tdd.intervalHierarchy.Builders.FromEndPointBuilder;
 import tdd.intervalHierarchy.Builders.IntervalBuilder;
 import tdd.intervalHierarchy.Builders.UntilEndPointBuilder;
 
-public class ClosedOpenedIntervalOpenedClosedIntervalTest {
+public class ClosedOpenedIntervalClosedOpenedIntervalTest {
 
 	@Test
 	public void testIsIntersectedOverlapingLeft() {
