@@ -23,6 +23,20 @@ public class UntilEndPointBuilder {
 		return this;
 	}
 	
+	public UntilEndPointBuilder untilEndPointClosed(double value)
+	{
+		this.value = value;
+		this.closedPoint = true;
+		return this;
+	}
+	
+	public UntilEndPointBuilder untilEndPointOpened(double value)
+	{
+		this.value = value;
+		this.closedPoint = false;
+		return this;
+	}
+	
 	public UntilEndPoint build() {
 		return new UntilEndPoint(this.value, this.closedPoint);
 	}
