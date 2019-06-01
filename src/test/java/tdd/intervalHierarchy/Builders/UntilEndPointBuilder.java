@@ -11,18 +11,6 @@ public class UntilEndPointBuilder {
 		this.closedPoint = false;
 	}
 	
-	public UntilEndPointBuilder value( double value)
-	{
-		this.value = value;
-		return this;
-	}
-	
-	public UntilEndPointBuilder closedInterval(boolean closedPoint)
-	{
-		this.closedPoint = closedPoint;
-		return this;
-	}
-	
 	public UntilEndPointBuilder untilEndPointClosed(double value)
 	{
 		this.value = value;

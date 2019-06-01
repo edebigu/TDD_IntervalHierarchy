@@ -8,60 +8,66 @@ import tdd.intervalHierarchy.Builders.IntervalBuilder;
 import tdd.intervalHierarchy.Builders.UntilEndPointBuilder;
 
 public class ClosedIntervalTest extends TestCase {
+	
+	private Interval createCloseInterval(double fromEndPointValue, double untilEndPointValue) {
+		
+		return new IntervalBuilder().fromEndPoint(new FromEndPointBuilder().fromEndPointClosed(fromEndPointValue).build()).untilEndPoint(new UntilEndPointBuilder().untilEndPointClosed(untilEndPointValue).build()).build();
+		
+	}
 
 	@Test
 	public void testIsIntersectedOverlapingByLeft() {
-		Interval one = new IntervalBuilder().fromEndPoint(new FromEndPointBuilder().value(3).closedInterval(true).build()).untilEndPoint(new UntilEndPointBuilder().value(14).closedInterval(true).build()).build();
-		Interval another = new IntervalBuilder().fromEndPoint(new FromEndPointBuilder().value(1).closedInterval(true).build()).untilEndPoint(new UntilEndPointBuilder().value(7).closedInterval(true).build()).build();
+		Interval one = this.createCloseInterval(3, 14);
+		Interval another = this.createCloseInterval(1, 7);
 		assertTrue(one.isIntersected(another));
 	}
 	
 	@Test
 	public void testIsIntersectedOverlapingByLeftWithEquals() {
-		Interval one = new IntervalBuilder().fromEndPoint(new FromEndPointBuilder().value(3).closedInterval(true).build()).untilEndPoint(new UntilEndPointBuilder().value(14).closedInterval(true).build()).build();
-		Interval another = new IntervalBuilder().fromEndPoint(new FromEndPointBuilder().value(3).closedInterval(true).build()).untilEndPoint(new UntilEndPointBuilder().value(7).closedInterval(true).build()).build();
+		Interval one = this.createCloseInterval(3, 14);
+		Interval another = this.createCloseInterval(3, 7);
 		assertTrue(one.isIntersected(another));
 	}
 	
 	@Test
 	public void testIsIntersectedOverlapingByEquals() {
-		Interval one = new IntervalBuilder().fromEndPoint(new FromEndPointBuilder().value(3).closedInterval(true).build()).untilEndPoint(new UntilEndPointBuilder().value(14).closedInterval(true).build()).build();
-		Interval another = new IntervalBuilder().fromEndPoint(new FromEndPointBuilder().value(3).closedInterval(true).build()).untilEndPoint(new UntilEndPointBuilder().value(14).closedInterval(true).build()).build();
+		Interval one = this.createCloseInterval(3, 14);
+		Interval another = this.createCloseInterval(3, 14);
 		assertTrue(one.isIntersected(another));
 	}
 	
 	@Test
 	public void testIsIntersectedOverlapingByRight() {
-		Interval one = new IntervalBuilder().fromEndPoint(new FromEndPointBuilder().value(3).closedInterval(true).build()).untilEndPoint(new UntilEndPointBuilder().value(14).closedInterval(true).build()).build();
-		Interval another = new IntervalBuilder().fromEndPoint(new FromEndPointBuilder().value(7).closedInterval(true).build()).untilEndPoint(new UntilEndPointBuilder().value(17).closedInterval(true).build()).build();
+		Interval one = this.createCloseInterval(3, 14);
+		Interval another = this.createCloseInterval(7, 17);
 		assertTrue(one.isIntersected(another));
 	}
 	
 	@Test
 	public void testIsIntersectedOverlapingByBoth() {
-		Interval one = new IntervalBuilder().fromEndPoint(new FromEndPointBuilder().value(3).closedInterval(true).build()).untilEndPoint(new UntilEndPointBuilder().value(14).closedInterval(true).build()).build();
-		Interval another = new IntervalBuilder().fromEndPoint(new FromEndPointBuilder().value(0).closedInterval(true).build()).untilEndPoint(new UntilEndPointBuilder().value(17).closedInterval(true).build()).build();
+		Interval one = this.createCloseInterval(3, 14);
+		Interval another = this.createCloseInterval(0, 17);
 		assertTrue(one.isIntersected(another));
 	}
 	
 	@Test
 	public void testIsIntersectedOverlapingByInside() {
-		Interval one = new IntervalBuilder().fromEndPoint(new FromEndPointBuilder().value(3).closedInterval(true).build()).untilEndPoint(new UntilEndPointBuilder().value(14).closedInterval(true).build()).build();
-		Interval another = new IntervalBuilder().fromEndPoint(new FromEndPointBuilder().value(5).closedInterval(true).build()).untilEndPoint(new UntilEndPointBuilder().value(10).closedInterval(true).build()).build();
+		Interval one = this.createCloseInterval(3, 14);
+		Interval another = this.createCloseInterval(5, 10);
 		assertTrue(one.isIntersected(another));
 	}
 	
 	@Test
 	public void testIsIntersectedNotOverlapingByLeft() {
-		Interval one = new IntervalBuilder().fromEndPoint(new FromEndPointBuilder().value(3).closedInterval(true).build()).untilEndPoint(new UntilEndPointBuilder().value(14).closedInterval(true).build()).build();
-		Interval another = new IntervalBuilder().fromEndPoint(new FromEndPointBuilder().value(0).closedInterval(true).build()).untilEndPoint(new UntilEndPointBuilder().value(2).closedInterval(true).build()).build();
+		Interval one = this.createCloseInterval(3, 14);
+		Interval another = this.createCloseInterval(0, 2);
 		assertFalse(one.isIntersected(another));
 	}
 	
 	@Test
 	public void testIsIntersectedNotOverlapingByRight() {
-		Interval one = new IntervalBuilder().fromEndPoint(new FromEndPointBuilder().value(3).closedInterval(true).build()).untilEndPoint(new UntilEndPointBuilder().value(14).closedInterval(true).build()).build();
-		Interval another = new IntervalBuilder().fromEndPoint(new FromEndPointBuilder().value(16).closedInterval(true).build()).untilEndPoint(new UntilEndPointBuilder().value(22).closedInterval(true).build()).build();
+		Interval one = this.createCloseInterval(3, 14);
+		Interval another = this.createCloseInterval(16, 22);
 		assertFalse(one.isIntersected(another));
 	}
 	
