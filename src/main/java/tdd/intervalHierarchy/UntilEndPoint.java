@@ -8,11 +8,14 @@ public class UntilEndPoint extends EndPoint {
 
 	public boolean isOnTheRigth(EndPoint another)
 	{
-		if (this.getClosedPoint() && another.getClosedPoint()) {
-			return this.getValue() >= another.getValue();
-		} else {
-			return this.getValue() > another.getValue();
+		if (this.getValue() > another.getValue()) {
+			return true;
 		}
+		if (this.getValue() == another.getValue())
+		{
+			return this.getClosedPoint() && another.getClosedPoint();
+		}
+		return false;
 	}
 
 }

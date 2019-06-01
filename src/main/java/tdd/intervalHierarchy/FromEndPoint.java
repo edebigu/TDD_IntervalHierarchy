@@ -7,13 +7,15 @@ public class FromEndPoint extends EndPoint{
 	}
 	
 	public boolean isOnTheLeft (EndPoint another)
-	{
-		if (this.getClosedPoint() && another.getClosedPoint()) {
-			return this.getValue() <= another.getValue();
+	{		
+		if (this.getValue() < another.getValue()) {
+			return true;
 		}
-		else {
-			return this.getValue() < another.getValue();
+		if (this.getValue() == another.getValue())
+		{
+			return this.getClosedPoint() && another.getClosedPoint();
 		}
+		return false;
 		
 	}
 
