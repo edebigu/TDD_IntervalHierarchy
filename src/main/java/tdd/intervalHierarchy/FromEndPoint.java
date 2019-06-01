@@ -2,12 +2,12 @@ package tdd.intervalHierarchy;
 
 public class FromEndPoint extends EndPoint{
 
-	public FromEndPoint(double value, boolean closedInterval) {
-		super(value, closedInterval);
+	public FromEndPoint(double value, boolean closePoint) {
+		super(value, closePoint);
 	}
 	
 	public boolean isIncluded(FromEndPoint another) {
-		if (this.getClosedInterval()) {
+		if (this.getClosedPoint()) {
 			return this.getValue() <= another.getValue();
 		}
 		else {
@@ -16,7 +16,7 @@ public class FromEndPoint extends EndPoint{
 	}
 	
 	public boolean isIncluded(UntilEndPoint another) {
-		if (this.getClosedInterval() && another.getClosedInterval()) {
+		if (this.getClosedPoint() && another.getClosedPoint()) {
 			return this.getValue() <= another.getValue();
 		}
 		else {

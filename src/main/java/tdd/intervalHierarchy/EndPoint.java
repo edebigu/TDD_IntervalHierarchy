@@ -5,19 +5,19 @@ public class EndPoint {
 	private double value;
 
 
-	private boolean closedInterval;
+	private boolean closePoint;
 
 	public EndPoint(double value, boolean closedInterval) {
 		this.value = value;
-		this.closedInterval = closedInterval;
+		this.closePoint = closedInterval;
 	}
 	
-	public boolean getClosedInterval() {
-		return closedInterval;
+	public boolean getClosedPoint() {
+		return closePoint;
 	}
 
-	public void setClosedInterval(boolean closedInterval) {
-		this.closedInterval = closedInterval;
+	public void setClosedPoint(boolean closedPoint) {
+		this.closePoint = closedPoint;
 	}
 
 	public double getValue() {
