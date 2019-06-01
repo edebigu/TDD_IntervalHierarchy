@@ -11,9 +11,9 @@ public class Interval {
 	}
 	
 	public boolean isIntersected(Interval another) {
-		return this.fromEndPoint.isIncluded(another.fromEndPoint) && this.untilEndPoint.isIncluded(another.fromEndPoint) ||
-				this.fromEndPoint.isIncluded(another.untilEndPoint) && this.untilEndPoint.isIncluded(another.untilEndPoint) ||
-				another.fromEndPoint.isIncluded(this.fromEndPoint) && another.untilEndPoint.isIncluded(this.fromEndPoint) || 
+		return this.fromEndPoint.isIncluded(another.fromEndPoint) && this.untilEndPoint.isOnTheRigth(another.fromEndPoint) ||
+				this.fromEndPoint.isIncluded(another.untilEndPoint) && this.untilEndPoint.isOnTheRigth(another.untilEndPoint) ||
+				another.fromEndPoint.isIncluded(this.fromEndPoint) && another.untilEndPoint.isOnTheRigth(this.fromEndPoint) || 
 				this.isEqual(another);
 
 	}
