@@ -17,13 +17,13 @@ public class IntervalBuilder {
 	}
 
 
-	public IntervalBuilder fromEndPoint(double value, boolean isClosed) {
-		this.fromEndPoint = new FromEndPoint (value,isClosed);
+	public IntervalBuilder fromEndPoint(FromEndPoint fromEndPoint) {
+		this.fromEndPoint = fromEndPoint;
 		return this;
 	}
 
-	public IntervalBuilder untilEndPoint(double value, boolean isClosed) {
-		this.untilEndPoint = new UntilEndPoint (value,isClosed);
+	public IntervalBuilder untilEndPoint(UntilEndPoint untilEndPoint) {
+		this.untilEndPoint = untilEndPoint;
 		return this;
 	}
 	
