@@ -9,8 +9,8 @@ public class CompositeIntervalBuilder {
 	public CompositeIntervalBuilder createOpenInterval(double fromEndPointValue, double untilEndPointValue) {
 
 		this.interval = new IntervalBuilder()
-				.fromEndPoint(new FromEndPointBuilder().fromEndPointOpened(fromEndPointValue).build())
-				.untilEndPoint(new UntilEndPointBuilder().untilEndPointOpened(untilEndPointValue).build()).build();
+				.fromEndPoint(new FromEndPointBuilder().fromEndPoint(fromEndPointValue).build())
+				.untilEndPoint(new UntilEndPointBuilder().untilEndPoint(untilEndPointValue).build()).build();
 		return this;
 
 	}
@@ -18,8 +18,8 @@ public class CompositeIntervalBuilder {
 	public CompositeIntervalBuilder createCloseInterval(double fromEndPointValue, double untilEndPointValue) {
 
 		this.interval = new IntervalBuilder()
-				.fromEndPoint(new FromEndPointBuilder().fromEndPointClosed(fromEndPointValue).build())
-				.untilEndPoint(new UntilEndPointBuilder().untilEndPointClosed(untilEndPointValue).build()).build();
+				.fromEndPointIncluded(new FromEndPointBuilder().fromEndPointIncluded(fromEndPointValue).build())
+				.untilEndPointIncluded(new UntilEndPointBuilder().untilEndPointIncluded(untilEndPointValue).build()).build();
 
 		return this;
 
@@ -28,8 +28,8 @@ public class CompositeIntervalBuilder {
 	public CompositeIntervalBuilder createOpenCloseInterval(double fromEndPointValue, double untilEndPointValue) {
 
 		this.interval = new IntervalBuilder()
-				.fromEndPoint(new FromEndPointBuilder().fromEndPointOpened(fromEndPointValue).build())
-				.untilEndPoint(new UntilEndPointBuilder().untilEndPointClosed(untilEndPointValue).build()).build();
+				.fromEndPoint(new FromEndPointBuilder().fromEndPoint(fromEndPointValue).build())
+				.untilEndPointIncluded(new UntilEndPointBuilder().untilEndPointIncluded(untilEndPointValue).build()).build();
 
 		return this;
 	}
@@ -37,8 +37,8 @@ public class CompositeIntervalBuilder {
 	public CompositeIntervalBuilder createCloseOpenInterval(double fromEndPointValue, double untilEndPointValue) {
 
 		this.interval = new IntervalBuilder()
-				.fromEndPoint(new FromEndPointBuilder().fromEndPointClosed(fromEndPointValue).build())
-				.untilEndPoint(new UntilEndPointBuilder().untilEndPointOpened(untilEndPointValue).build()).build();
+				.fromEndPointIncluded(new FromEndPointBuilder().fromEndPointIncluded(fromEndPointValue).build())
+				.untilEndPoint(new UntilEndPointBuilder().untilEndPoint(untilEndPointValue).build()).build();
 		
 		return this;
 

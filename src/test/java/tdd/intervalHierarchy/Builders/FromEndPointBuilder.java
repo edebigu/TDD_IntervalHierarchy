@@ -1,33 +1,44 @@
 package tdd.intervalHierarchy.Builders;
 
+import java.nio.file.WatchEvent.Kind;
+
+import tdd.intervalHierarchy.Close;
 import tdd.intervalHierarchy.FromEndPoint;
+import tdd.intervalHierarchy.Open;
 
 public class FromEndPointBuilder {
 	
-	private double value; 
-	boolean closedPoint;
+	private double value;
+	private boolean closed;
 	
 	public FromEndPointBuilder() {
 		this.value = 4;
-		this.closedPoint = false;
+		this.closed = true;
 	}
-
-	public FromEndPointBuilder fromEndPointClosed(double value)
+	
+	public FromEndPointBuilder fromEndPoint(double value)
 	{
 		this.value = value;
-		this.closedPoint = true;
+		this.closed = false;
 		return this;
 	}
 	
-	public FromEndPointBuilder fromEndPointOpened(double value)
+	public FromEndPointBuilder fromEndPointIncluded(double value)
 	{
 		this.value = value;
-		this.closedPoint = false;
+		this.closed = true;
 		return this;
 	}
 	
 	public FromEndPoint build() {
-		return new FromEndPoint(this.value, this.closedPoint);
+		if (this.closed)
+		{
+			return new FromEndPoint(this.value, new Close());
+		}
+		else {
+			return new FromEndPoint(this.value, new Open());
+		}
+		
 	}
 
 }

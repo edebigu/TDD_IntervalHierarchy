@@ -1,32 +1,41 @@
 package tdd.intervalHierarchy.Builders;
+import tdd.intervalHierarchy.Close;
+import tdd.intervalHierarchy.FromEndPoint;
+import tdd.intervalHierarchy.Open;
 import tdd.intervalHierarchy.UntilEndPoint;
 
 public class UntilEndPointBuilder {
 	
-	private double value; 
-	boolean closedPoint;
+	private double value;
+	private boolean closed;
 	
 	public UntilEndPointBuilder() {
 		this.value = 4;
-		this.closedPoint = false;
+		this.closed = true;
 	}
 	
-	public UntilEndPointBuilder untilEndPointClosed(double value)
+	public UntilEndPointBuilder untilEndPoint(double value)
 	{
 		this.value = value;
-		this.closedPoint = true;
+		this.closed = false;
 		return this;
 	}
 	
-	public UntilEndPointBuilder untilEndPointOpened(double value)
+	public UntilEndPointBuilder untilEndPointIncluded(double value)
 	{
 		this.value = value;
-		this.closedPoint = false;
+		this.closed = true;
 		return this;
 	}
 	
 	public UntilEndPoint build() {
-		return new UntilEndPoint(this.value, this.closedPoint);
+		if (this.closed)
+		{
+			return new UntilEndPoint(this.value, new Close());
+		}
+		else {
+			return new UntilEndPoint(this.value, new Open());
+		}
 	}
 
 }

@@ -1,24 +1,17 @@
 package tdd.intervalHierarchy;
 
-public class EndPoint {
+public abstract class EndPoint {
 	
-	private double value;
+	protected double value;
+	
+	protected Kind kind;
 
-
-	private boolean closePoint;
-
-	public EndPoint(double value, boolean closedInterval) {
+	public EndPoint(double value, Kind kind) {
 		this.value = value;
-		this.closePoint = closedInterval;
+		this.kind = kind;
 	}
 	
-	public boolean getClosedPoint() {
-		return closePoint;
-	}
-
-	public void setClosedPoint(boolean closedPoint) {
-		this.closePoint = closedPoint;
-	}
+	public abstract boolean isIncluded(EndPoint endPoint);
 
 	public double getValue() {
 		return value;
@@ -26,6 +19,14 @@ public class EndPoint {
 
 	public void setValue(double value) {
 		this.value = value;
+	}
+
+	public Kind getKind() {
+		return kind;
+	}
+
+	public void setKind(Kind kind) {
+		this.kind = kind;
 	}
 	
 	

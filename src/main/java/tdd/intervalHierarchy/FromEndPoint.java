@@ -2,18 +2,20 @@ package tdd.intervalHierarchy;
 
 public class FromEndPoint extends EndPoint{
 
-	public FromEndPoint(double value, boolean closePoint) {
-		super(value, closePoint);
+	public FromEndPoint(double value, Kind kind) {
+		super(value, kind);
 	}
 	
-	public boolean isOnTheLeft (EndPoint another)
+	@Override
+	public boolean isIncluded (EndPoint another)
 	{		
+	
 		if (this.getValue() < another.getValue()) {
 			return true;
 		}
 		if (this.getValue() == another.getValue())
 		{
-			return this.getClosedPoint() && another.getClosedPoint();
+			return this.getKind().includes(another.getKind());
 		}
 		return false;
 		
