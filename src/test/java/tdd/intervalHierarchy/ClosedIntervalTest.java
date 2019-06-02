@@ -2,11 +2,11 @@ package tdd.intervalHierarchy;
 
 import org.junit.Test;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
 import tdd.intervalHierarchy.Builders.CompositeIntervalBuilder;
 
 
-public class ClosedIntervalTest extends TestCase {
+public class ClosedIntervalTest {
 	
 
 	@Test

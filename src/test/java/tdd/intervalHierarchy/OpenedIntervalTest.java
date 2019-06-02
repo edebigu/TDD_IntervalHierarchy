@@ -1,12 +1,12 @@
 package tdd.intervalHierarchy;
 
 import org.junit.Test;
+import static org.junit.Assert.*;
 
-import junit.framework.TestCase;
 import tdd.intervalHierarchy.Builders.CompositeIntervalBuilder;
 
 
-public class OpenedIntervalTest extends TestCase{
+public class OpenedIntervalTest{
 
 
 	@Test
@@ -87,8 +87,8 @@ public class OpenedIntervalTest extends TestCase{
 	
 	@Test
 	public void testIsIntersectedNotOverlapingOnTheRight() {
-		Interval one = new CompositeIntervalBuilder().createCloseInterval(3, 14).build();
-		Interval another = new CompositeIntervalBuilder().createCloseInterval(15, 20).build();
+		Interval one = new CompositeIntervalBuilder().createOpenInterval(3, 14).build();
+		Interval another = new CompositeIntervalBuilder().createOpenInterval(15, 20).build();
 		assertFalse(one.isIntersected(another));
 	}
 	

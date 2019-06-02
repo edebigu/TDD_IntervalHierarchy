@@ -9,16 +9,39 @@ import tdd.intervalHierarchy.Builders.CompositeIntervalBuilder;
 public class ClosedOpenedIntervalClosedIntervalTest {
 
 	@Test
-	public void testIsIntersectedOverlapingLeft() {
+	public void testIsIntersectedOverlapingOnTheLeft() {
 		Interval one = new CompositeIntervalBuilder().createCloseOpenInterval(3, 14).build();
 		Interval another = new CompositeIntervalBuilder().createCloseInterval(1, 7).build();
 		assertTrue(one.isIntersected(another));
 	}
 	
 	@Test
-	public void testIsIntersectedOverlapingByLeftWithEqualsMin() {
+	public void testIsIntersectedOverlapingOnTheRigth() {
+		Interval one = new CompositeIntervalBuilder().createCloseOpenInterval(3, 14).build();
+		Interval another = new CompositeIntervalBuilder().createCloseInterval(5, 18).build();
+		assertTrue(one.isIntersected(another));
+	}
+	
+	
+	@Test
+	public void testIsIntersectedOverlapingWhenMinsAreEquals() {
 		Interval one = new CompositeIntervalBuilder().createCloseOpenInterval(3, 14).build();
 		Interval another = new CompositeIntervalBuilder().createCloseInterval(3, 7).build();
+		assertTrue(one.isIntersected(another));
+	}
+	
+	@Test
+	public void testIsIntersectedOverlapingWhenMaxsAreEquals() {
+
+		Interval one = new CompositeIntervalBuilder().createCloseOpenInterval(3, 14).build();
+		Interval another = new CompositeIntervalBuilder().createCloseInterval(5, 14).build();
+		assertTrue(one.isIntersected(another));
+	}
+	
+	@Test
+	public void testIsIntersectedEqualInterval() {
+		Interval one = new CompositeIntervalBuilder().createCloseOpenInterval(3, 14).build();
+		Interval another = new CompositeIntervalBuilder().createCloseInterval(3, 14).build();
 		assertTrue(one.isIntersected(another));
 	}
 	
@@ -37,23 +60,31 @@ public class ClosedOpenedIntervalClosedIntervalTest {
 	}
 	
 	@Test
-	public void testIsIntersectedOverlapingLeftFromEndPointUntilEndpoint() {
+	public void testIsIntersectedOverlapingOnTheLeftWhenMinAreEqualsMax() {
 		Interval one = new CompositeIntervalBuilder().createCloseOpenInterval(3, 14).build();
 		Interval another = new CompositeIntervalBuilder().createCloseInterval(0, 3).build();
 		assertTrue(one.isIntersected(another));
 	}
 	
 	@Test
-	public void testIsIntersectedNotOverlapingRight() {
+	public void testIsIntersectedNotOverlapingRightWhenMaxsAreEqualsMin() {
 		Interval one = new CompositeIntervalBuilder().createCloseOpenInterval(3, 14).build();
 		Interval another = new CompositeIntervalBuilder().createCloseInterval(14, 22).build();
 		assertFalse(one.isIntersected(another));
 	}
+	
 	@Test
-	public void testIsIntersectedEqualInterval() {
+	public void testIsIntersectedNotOverlapingOnTheLeft() {
 		Interval one = new CompositeIntervalBuilder().createCloseOpenInterval(3, 14).build();
-		Interval another = new CompositeIntervalBuilder().createCloseInterval(3, 14).build();
-		assertTrue(one.isIntersected(another));
+		Interval another = new CompositeIntervalBuilder().createCloseInterval(0, 2).build();
+		assertFalse(one.isIntersected(another));
+	}
+	
+	@Test
+	public void testIsIntersectedNotOverlapingOnTheRight() {
+		Interval one = new CompositeIntervalBuilder().createCloseOpenInterval(3, 14).build();
+		Interval another = new CompositeIntervalBuilder().createCloseInterval(15, 20).build();
+		assertFalse(one.isIntersected(another));
 	}
 
 
