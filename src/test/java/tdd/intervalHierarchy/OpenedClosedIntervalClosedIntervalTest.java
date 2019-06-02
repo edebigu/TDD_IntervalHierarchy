@@ -44,7 +44,7 @@ public class OpenedClosedIntervalClosedIntervalTest {
 	}
 	
 	@Test
-	public void testIsIntersectedNotOverlapingRight() {
+	public void testIsIntersectedOverlapingPointRight() {
 		Interval one = new CompositeIntervalBuilder().createOpenCloseInterval(3, 14).build();
 		Interval another = new CompositeIntervalBuilder().createCloseInterval(14, 22).build();
 		assertTrue(one.isIntersected(another));

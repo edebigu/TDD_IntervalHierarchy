@@ -59,6 +59,7 @@ public class OpenedIntervalTest {
 
 		Interval one = new CompositeIntervalBuilder().createOpenInterval(3, 14).build();
 		Interval another = new CompositeIntervalBuilder().createOpenInterval(3, 14).build();
+		assertTrue(one.isIntersected(another));
 	}
 
 }
